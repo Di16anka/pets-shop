@@ -1,3 +1,5 @@
+const { createElement } = require("react");
+
 const items = [
   {
     title: "Игрушка мячик",
@@ -84,3 +86,37 @@ const items = [
     img: "./img/12.jpeg",
   },
 ];
+
+const item = document.querySelector("#item-template");
+const products = item.content.cloneNode(true);
+
+function createProduct (card) {
+
+const heading = document.querySelector("h1");
+heading.textContent = card.title;
+
+const paragraph = document.querySelector("p");
+paragraph.textContent = card.description;
+
+const img = document.querySelector("img");
+img.src = card.img;
+
+const tags = document.querySelector(".tags");
+  tags.forEach(element => {
+const tag = document.createElement("span");
+    tags.element = tag;
+  });
+
+const price = document.querySelector(".price");
+price.textContent = card.price;
+
+}
+
+function renderArray(itemsArray) {
+  renderArray.array.forEach(element => {
+    const newProduct = createProduct (card);
+    container.append(newProduct);
+  });
+}
+
+renderArray(items);
