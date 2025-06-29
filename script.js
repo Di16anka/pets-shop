@@ -87,36 +87,33 @@ const items = [
   },
 ];
 
-const item = document.querySelector("#item-template");
-const products = item.content.cloneNode(true);
+const itemsContainer = document.querySelector("#shop-items");
+const itemTemplate = document.querySelector("#item-template");
 
-function createProduct (card) {
-
-const heading = document.querySelector("h1");
-heading.textContent = card.title;
-
-const paragraph = document.querySelector("p");
-paragraph.textContent = card.description;
-
-const img = document.querySelector("img");
-img.src = card.img;
-
-const tags = document.querySelector(".tags");
-  tags.forEach(element => {
-const tag = document.createElement("span");
-    tags.element = tag;
-  });
-
-const price = document.querySelector(".price");
-price.textContent = card.price;
-
-}
-
-function renderArray(itemsArray) {
-  renderArray.array.forEach(element => {
-    const newProduct = createProduct (card);
-    container.append(newProduct);
+function renderItems(items) {
+  items.forEach((item) => {
+   itemsContainer.append(prepareShopItem(item));
   });
 }
 
-renderArray(items);
+renderItems(items);
+
+function prepareShopItem(shopItem) {
+    const { title, description, tags, img, price } = shopItem;
+    const item = itemTemplate.content.cloneNode(true);
+  item.querySelector("h1").textContent = title;
+  item.querySelector("p").textContent = description;
+  item.querySelector("img").src = img;
+  item.querySelector(".price").textContent = `${price}P`;
+
+    const tagsHolder = item.querySelector(".tags");
+
+  tags.forEach(function(tag) {
+    const span = document.createElement('span');
+    span.classList.add('tag');
+    span.textContent = tag;
+    tagsHolder.append(span);
+})
+
+   return item;
+}
