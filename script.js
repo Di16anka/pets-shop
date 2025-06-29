@@ -1,5 +1,3 @@
-const { createElement } = require("react");
-
 const items = [
   {
     title: "Игрушка мячик",
